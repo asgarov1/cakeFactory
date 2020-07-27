@@ -1,6 +1,6 @@
 package com.asgarov.liveproject.cakefactory.controllers;
 
-import com.asgarov.liveproject.cakefactory.entity.Product;
+import com.asgarov.liveproject.cakefactory.domain.Item;
 import com.asgarov.liveproject.cakefactory.service.CatalogServiceImpl;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -56,24 +56,24 @@ class HomeControllerTest {
     @Test
     @DisplayName("Homepage displays all products")
     public void allProductsAreDisplayed() throws Exception {
-        List<Product> products = Arrays.asList(
-                new Product("abcr", "All Butter Croissant", 0.75),
-                new Product("ccr", "Chocolate Croissant", 0.95),
-                new Product("b", "Fresh Baguette", 1.60),
-                new Product("rv", "Red Velvet", 3.95),
-                new Product("vs", "Victoria Sponge", 5.45),
-                new Product("cc", "Carrot Cake", 3.45));
+        List<Item> items = Arrays.asList(
+                new Item("abcr", "All Butter Croissant", 0.75),
+                new Item("ccr", "Chocolate Croissant", 0.95),
+                new Item("b", "Fresh Baguette", 1.60),
+                new Item("rv", "Red Velvet", 3.95),
+                new Item("vs", "Victoria Sponge", 5.45),
+                new Item("cc", "Carrot Cake", 3.45));
 
         given(this.productService.findAll())
-                .willReturn(products);
+                .willReturn(items);
 
         this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString(products.get(0).getTitle())))
-                .andExpect(content().string(containsString(products.get(1).getTitle())))
-                .andExpect(content().string(containsString(products.get(2).getTitle())))
-                .andExpect(content().string(containsString(products.get(3).getTitle())))
-                .andExpect(content().string(containsString(products.get(4).getTitle())))
-                .andExpect(content().string(containsString(products.get(5).getTitle())));
+                .andExpect(content().string(containsString(items.get(0).getTitle())))
+                .andExpect(content().string(containsString(items.get(1).getTitle())))
+                .andExpect(content().string(containsString(items.get(2).getTitle())))
+                .andExpect(content().string(containsString(items.get(3).getTitle())))
+                .andExpect(content().string(containsString(items.get(4).getTitle())))
+                .andExpect(content().string(containsString(items.get(5).getTitle())));
     }
 }

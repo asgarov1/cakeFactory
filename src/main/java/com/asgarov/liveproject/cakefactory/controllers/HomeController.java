@@ -1,6 +1,7 @@
 package com.asgarov.liveproject.cakefactory.controllers;
 
-import com.asgarov.liveproject.cakefactory.entity.Product;
+import com.asgarov.liveproject.cakefactory.domain.Item;
+import com.asgarov.liveproject.cakefactory.service.BasketService;
 import com.asgarov.liveproject.cakefactory.service.CatalogService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +12,11 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    private final BasketService basketService;
     private final CatalogService catalogService;
 
-    public HomeController(CatalogService catalogService) {
+    public HomeController(BasketService basketService, CatalogService catalogService) {
+        this.basketService = basketService;
         this.catalogService = catalogService;
     }
 
@@ -22,8 +25,13 @@ public class HomeController {
         return "index";
     }
 
-    @ModelAttribute("products")
-    public List<Product> products(){
+    @ModelAttribute("items")
+    public List<Item> products(){
         return catalogService.findAll();
+    }
+
+    @ModelAttribute("numberOfItemsInBasket")
+    public Integer numberOfItemsInBasket(){
+        return basketService.countItems();
     }
 }

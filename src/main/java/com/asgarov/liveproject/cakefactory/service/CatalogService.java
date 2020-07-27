@@ -1,13 +1,12 @@
 package com.asgarov.liveproject.cakefactory.service;
 
-import com.asgarov.liveproject.cakefactory.entity.Product;
-import org.springframework.stereotype.Service;
+import com.asgarov.liveproject.cakefactory.domain.Item;
 
 import java.util.List;
 
 public interface CatalogService {
 
-    List<Product> findAll();
-    Product findById(String id);
+    List<Item> findAll();
+    Item findById(String id);
 
 }

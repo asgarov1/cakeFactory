@@ -1,6 +1,6 @@
 package com.asgarov.liveproject.cakefactory.service;
 
-import com.asgarov.liveproject.cakefactory.entity.Product;
+import com.asgarov.liveproject.cakefactory.domain.Item;
 import com.asgarov.liveproject.cakefactory.repository.CatalogRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,17 +29,17 @@ class CatalogServiceImplTest {
     @Test
     @DisplayName("findAll() works as expected")
     void findAllWorksOk() {
-        List<Product> products = catalogService.findAll();
-        assertFalse(products.isEmpty());
+        List<Item> items = catalogService.findAll();
+        assertFalse(items.isEmpty());
     }
 
     @Test
     @DisplayName("findById() works as expected")
     void findByIdWorksOk() {
-        Product croissant = Product.builder().title("Croissant").price(3.99).product_code("xyz").build();
+        Item croissant = Item.builder().title("Croissant").price(3.99).itemCode("xyz").build();
         catalogRepository.save(croissant);
 
-        Optional<Product> foundProduct = catalogRepository.findById(croissant.getProduct_code());
+        Optional<Item> foundProduct = catalogRepository.findById(croissant.getItemCode());
         assertTrue(foundProduct.isPresent());
         assertEquals(croissant, foundProduct.get());
     }

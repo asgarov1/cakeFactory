@@ -1,7 +1,6 @@
-package com.asgarov.liveproject.cakefactory.entity;
+package com.asgarov.liveproject.cakefactory.domain;
 
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +13,10 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Data
 @Builder
-public class Product {
+public class Item {
 
     @Id
-    private String product_code;
+    private String itemCode;
 
     @Column
     private String title;
