@@ -2,6 +2,7 @@ package com.asgarov.liveproject.cakefactory.service;
 
 import com.asgarov.liveproject.cakefactory.entity.Product;
 import com.asgarov.liveproject.cakefactory.repository.CatalogRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,17 @@ class CatalogServiceImplTest {
     @Autowired
     CatalogRepository catalogRepository;
 
+    private CatalogService catalogService;
+
+    @BeforeEach
+    void setup() {
+        this.catalogService = new CatalogServiceImpl(catalogRepository);
+    }
+
     @Test
     @DisplayName("findAll() works as expected")
     void findAllWorksOk() {
-        List<Product> products = catalogRepository.findAll();
+        List<Product> products = catalogService.findAll();
         assertFalse(products.isEmpty());
     }
 
