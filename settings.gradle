@@ -1,1 +1,3 @@
 rootProject.name = 'cakefactory'
+include 'autoconfig'
+

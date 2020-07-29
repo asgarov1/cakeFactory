@@ -43,6 +43,4 @@ class CatalogServiceImplTest {
         assertTrue(foundProduct.isPresent());
         assertEquals(croissant, foundProduct.get());
     }
-
-
 }

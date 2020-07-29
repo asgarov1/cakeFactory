@@ -8,7 +8,6 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 @Component
 @SessionScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -34,6 +33,10 @@ public class Basket {
     }
 
     public Integer countItems() {
-        return itemsInBasket.values().stream().mapToInt(i -> i).sum();
+        return itemsInBasket.values().stream().mapToInt(Integer::valueOf).sum();
+    }
+
+    public Double getTotal() {
+        return itemsInBasket.keySet().stream().mapToDouble(k -> k.getPrice() * itemsInBasket.get(k)).sum();
     }
 }

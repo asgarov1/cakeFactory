@@ -23,6 +23,7 @@ public class Item {
 
     @Column
     private double price;
+
 }
 
 

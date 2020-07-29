@@ -2,8 +2,10 @@ package com.asgarov.liveproject.cakefactory.service;
 
 import com.asgarov.liveproject.cakefactory.domain.Basket;
 import com.asgarov.liveproject.cakefactory.domain.Item;
-import lombok.Getter;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+import java.util.Set;
 
 @Service
 public class BasketServiceImpl implements BasketService{
@@ -32,5 +34,15 @@ public class BasketServiceImpl implements BasketService{
     @Override
     public Integer countItems() {
         return basket.countItems();
+    }
+
+    @Override
+    public Set<Map.Entry<Item, Integer>> getBasketItems() {
+        return basket.getItemsInBasket().entrySet();
+    }
+
+    @Override
+    public Double getTotal() {
+        return basket.getTotal();
     }
 }

@@ -1,6 +1,7 @@
 package com.asgarov.liveproject.cakefactory.controllers;
 
 import com.asgarov.liveproject.cakefactory.domain.Item;
+import com.asgarov.liveproject.cakefactory.service.BasketService;
 import com.asgarov.liveproject.cakefactory.service.CatalogServiceImpl;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -22,7 +23,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(HomeController.class)
-@WebAppConfiguration
 class HomeControllerTest {
 
     @Autowired
@@ -34,6 +34,8 @@ class HomeControllerTest {
     @MockBean
     CatalogServiceImpl productService;
 
+    @MockBean
+    BasketService basketService;
 
     @Test
     @DisplayName("index page returns the landing page")
@@ -49,7 +51,6 @@ class HomeControllerTest {
     public void givenAClient_whenEnteringHomePage_thenPageTitleIsOk() throws Exception {
         String url = "http://localhost:8080/";
         HtmlPage page = webClient.getPage(url);
-
         assertEquals("Cake Factory Homepage", page.getTitleText());
     }
 
