@@ -33,6 +33,7 @@ dependencies {
     }
     runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'com.h2database:h2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.10.5'
 }
 
 test {

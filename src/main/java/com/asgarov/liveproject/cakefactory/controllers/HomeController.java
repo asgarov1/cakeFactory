@@ -4,6 +4,7 @@ import com.asgarov.liveproject.cakefactory.domain.Item;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
 import com.asgarov.liveproject.cakefactory.service.CatalogService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -21,7 +22,10 @@ public class HomeController {
     }
 
     @GetMapping(value = {"/"})
-    public String home() {
+    public String home(Model model) {
+        if(!basketService.getBasketItems().isEmpty()) {
+            model.addAttribute("showBasket", true);
+        }
         return "index";
     }
 
@@ -34,4 +38,5 @@ public class HomeController {
     public Integer numberOfItemsInBasket(){
         return basketService.countItems();
     }
+
 }

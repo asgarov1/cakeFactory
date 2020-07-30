@@ -1,5 +1,6 @@
 package com.asgarov.liveproject.cakefactory.controllers;
 
+import com.asgarov.liveproject.cakefactory.domain.dto.OrderDTO;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
 import com.asgarov.liveproject.cakefactory.service.CatalogService;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ public class BasketController {
         model.addAttribute("basketEntries", basketService.getBasketItems());
         model.addAttribute("total", String.format("%.2f", basketService.getTotal()));
         model.addAttribute("numberOfItemsInBasket", basketService.countItems());
+        model.addAttribute("orderDTO", new OrderDTO());
         return "basket";
     }
 
