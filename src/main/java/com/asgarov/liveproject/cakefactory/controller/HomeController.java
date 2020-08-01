@@ -1,4 +1,4 @@
-package com.asgarov.liveproject.cakefactory.controllers;
+package com.asgarov.liveproject.cakefactory.controller;
 
 import com.asgarov.liveproject.cakefactory.domain.Item;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
@@ -21,21 +21,21 @@ public class HomeController {
         this.catalogService = catalogService;
     }
 
-    @GetMapping(value = {"/"})
+    @GetMapping(value = {"/", "index"})
     public String home(Model model) {
-        if(!basketService.getBasketItems().isEmpty()) {
+        if (!basketService.getBasketItems().isEmpty()) {
             model.addAttribute("showBasket", true);
         }
         return "index";
     }
 
     @ModelAttribute("items")
-    public List<Item> products(){
+    public List<Item> products() {
         return catalogService.findAll();
     }
 
     @ModelAttribute("numberOfItemsInBasket")
-    public Integer numberOfItemsInBasket(){
+    public Integer numberOfItemsInBasket() {
         return basketService.countItems();
     }
 

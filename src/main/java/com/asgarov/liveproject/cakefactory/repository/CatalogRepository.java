@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface CatalogRepository extends CrudRepository<Item, String> {
     List<Item> findAll();
+
     Optional<Item> findById(String id);
 }

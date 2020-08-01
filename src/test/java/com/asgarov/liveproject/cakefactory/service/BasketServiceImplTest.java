@@ -65,4 +65,28 @@ class BasketServiceImplTest {
         basketService.clearBasket();
         assertTrue(basket.getItemsInBasket().isEmpty());
     }
+
+    @Test
+    @DisplayName("Count items should work as expected")
+    void countItems() {
+        Item croissant = new Item("cr", "Croissant", 2.99);
+        int numberOfCroissants = 2;
+        for (int i = 0; i < numberOfCroissants; i++) {
+            basketService.addItemToBasket(croissant);
+        }
+
+        assertEquals(numberOfCroissants, basket.countItems());
+    }
+
+    @Test
+    @DisplayName("getTotal() should work as expected")
+    void getTotal() {
+        Item croissant = new Item("cr", "Croissant", 2.99);
+        int numberOfCroissants = 2;
+        for (int i = 0; i < numberOfCroissants; i++) {
+            basketService.addItemToBasket(croissant);
+        }
+
+        assertEquals(numberOfCroissants * croissant.getPrice(), basket.getTotal());
+    }
 }

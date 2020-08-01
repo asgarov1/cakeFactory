@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class CatalogServiceImpl implements CatalogService {
 
-    private CatalogRepository catalogRepository;
+    private final CatalogRepository catalogRepository;
 
     public CatalogServiceImpl(CatalogRepository catalogRepository) {
         this.catalogRepository = catalogRepository;

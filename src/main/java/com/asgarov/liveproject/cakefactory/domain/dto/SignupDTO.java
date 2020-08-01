@@ -2,15 +2,18 @@ package com.asgarov.liveproject.cakefactory.domain.dto;
 
 import lombok.*;
 
-@Builder
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class OrderDTO {
+@NoArgsConstructor
+@Builder
+public class SignupDTO {
+
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
+    private String repeatPassword;
     private String address;
     private String country;
     private String city;

@@ -91,13 +91,10 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="state">State</label>
-                        <select class="custom-select d-block w-100" name="state" required>
-                            <option value="">Choose...</option>
-                            <option>California</option>
-                        </select>
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" name="city" placeholder="City" required>
                         <div class="invalid-feedback">
-                            Please provide a valid state.
+                            City required.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
@@ -120,10 +117,13 @@
                 </div>
                 <hr class="mb-4">
 
-                <button class="btn btn-primary btn-lg btn-block" onclick="sendOrder()" data-toggle="modal" data-target="#successModal">Complete Order</button>
+                <button class="btn btn-primary btn-lg btn-block" onclick="postAjax('/order')" data-toggle="modal"
+                        data-target="#successModal">Complete Order
+                </button>
             </form>
 
-            <div class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -136,7 +136,9 @@
 
                         </div>
                         <div class="modal-footer">
-                            <a href="/"><button type="button" class="btn btn-primary">Ok</button></a>
+                            <a href="/">
+                                <button type="button" class="btn btn-primary">Ok</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -145,41 +147,5 @@
     </div>
 </div>
 {{>partials/footer}}
-<script>
-    function sendOrder() {
-        event.preventDefault();
-        $.fn.serializeObject = function () {
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a, function () {
-                if (o[this.name] !== undefined) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-            });
-            return o;
-        };
-
-        let orderData = JSON.stringify($("#orderForm").serializeObject());
-
-        $.ajax({
-            type: "POST",
-            url: "/order",
-            data: orderData,
-            dataType: "text",
-            contentType: "application/json",
-            success: function (responseText) {
-                $("#successMessage").text(responseText);
-            },
-            error: function (request, status, error) {
-                alert(request.responseText);
-            }
-        });
-    }
-</script>
 </body>
 </html>

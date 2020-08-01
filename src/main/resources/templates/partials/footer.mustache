@@ -3,6 +3,42 @@
         <p class="m-0 text-center text-white">Copyright &copy; Cake Factory 2020</p>
     </div>
 
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function postAjax(postUrl) {
+            event.preventDefault();
+            $.fn.serializeObject = function () {
+                let o = {};
+                let a = this.serializeArray();
+                $.each(a, function () {
+                    if (o[this.name] !== undefined) {
+                        if (!o[this.name].push) {
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+                return o;
+            };
+
+            let orderData = JSON.stringify($("#orderForm").serializeObject());
+
+            $.ajax({
+                type: "POST",
+                url: postUrl,
+                data: orderData,
+                dataType: "text",
+                contentType: "application/json",
+                success: function (responseText) {
+                    $("#successMessage").text(responseText);
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+        }
+    </script>
 </footer>

@@ -1,4 +1,4 @@
-package com.asgarov.liveproject.cakefactory.controllers;
+package com.asgarov.liveproject.cakefactory.controller;
 
 import com.asgarov.liveproject.cakefactory.domain.dto.OrderDTO;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
@@ -22,13 +22,13 @@ public class BasketController {
     }
 
     @PostMapping
-    public String addItem(@RequestParam String itemCode){
+    public String addItem(@RequestParam String itemCode) {
         basketService.addItemToBasket(catalogService.findById(itemCode));
         return "redirect:/";
     }
 
     @GetMapping
-    public String viewBasket(Model model){
+    public String viewBasket(Model model) {
         model.addAttribute("basketEntries", basketService.getBasketItems());
         model.addAttribute("total", String.format("%.2f", basketService.getTotal()));
         model.addAttribute("numberOfItemsInBasket", basketService.countItems());

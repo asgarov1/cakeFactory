@@ -23,7 +23,7 @@ public class Basket {
 
     public void removeItem(Item item) {
         itemsInBasket.computeIfPresent(item, (key, value) -> --value);
-        if(itemsInBasket.get(item) == 0) {
+        if (itemsInBasket.get(item) == 0) {
             itemsInBasket.remove(item);
         }
     }

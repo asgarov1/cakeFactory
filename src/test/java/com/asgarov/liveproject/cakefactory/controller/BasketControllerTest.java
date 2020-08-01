@@ -1,4 +1,4 @@
-package com.asgarov.liveproject.cakefactory.controllers;
+package com.asgarov.liveproject.cakefactory.controller;
 
 import com.asgarov.liveproject.cakefactory.domain.Item;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
@@ -15,6 +15,7 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -33,21 +34,26 @@ class BasketControllerTest {
 
     @Test
     @DisplayName("Add post request should be handler by the controller ok")
-    public void test() throws Exception {
+    public void addItemWorks() throws Exception {
         mockMvc.perform(post("/basket?itemCode=abcr"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"));
+
+        verify(basketService).addItemToBasket(catalogService.findById("abcr"));
     }
 
     @Test
     @DisplayName("A confirmation message should appear on the page")
     public void givenAClient_whenAddingItem_thenConfirmationMessageAppears() throws Exception {
-        mockMvc.perform(get("/").flashAttr("numberOfItemsInBasket", "1")).andExpect(content().string(containsString("Basket: 1 item(s)")));
+        mockMvc.perform(get("/")
+                .flashAttr("numberOfItemsInBasket", "1")
+                .flashAttr("showBasket", true))
+                .andExpect(content().string(containsString("Basket: 1 item(s)")));
     }
 
     @Test
     @DisplayName("Basket should display added products")
-    public void basketDisplaysProductsOk() throws Exception {
+    public void viewBasketWorks() throws Exception {
         Map<Item, Integer> basketItems = new HashMap<>();
         basketItems.put(new Item("abc", "Apple Biscuit", 2.39), 2);
 
@@ -57,5 +63,16 @@ class BasketControllerTest {
         mockMvc.perform(get("/basket"))
                 .andExpect(content().string(containsString("Total:")))
                 .andExpect(content().string(containsString("$" + basketService.getTotal())));
+    }
+
+    @Test
+    @DisplayName("Basket should remove products one at a time when pressed remove")
+    public void removeWorks() throws Exception {
+        String itemCode = "abc";
+        mockMvc.perform(post("/basket/remove").param("itemCode", itemCode))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/basket"));
+
+        verify(basketService).removeItemFromBasket(catalogService.findById(itemCode));
     }
 }

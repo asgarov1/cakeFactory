@@ -1,4 +1,4 @@
-package com.asgarov.liveproject.cakefactory.controllers;
+package com.asgarov.liveproject.cakefactory.controller;
 
 import com.asgarov.liveproject.cakefactory.domain.Item;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
@@ -38,8 +37,8 @@ class HomeControllerTest {
     BasketService basketService;
 
     @Test
-    @DisplayName("index page returns the landing page")
-    public void test() throws Exception {
+    @DisplayName("Index page returns the landing page")
+    public void homeWorks() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))

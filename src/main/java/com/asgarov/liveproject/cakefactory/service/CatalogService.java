@@ -7,6 +7,7 @@ import java.util.List;
 public interface CatalogService {
 
     List<Item> findAll();
+
     Item findById(String id);
 
 }

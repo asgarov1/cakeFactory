@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Service
-public class BasketServiceImpl implements BasketService{
+public class BasketServiceImpl implements BasketService {
 
     private final Basket basket;
 
