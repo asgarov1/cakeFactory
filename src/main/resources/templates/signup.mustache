@@ -21,6 +21,7 @@
         <h1 class="mb-3 text-center">Registration Page</h1>
         <hr/>
         <form class="needs-validation" novalidate id="orderForm">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="firstName">First name</label>

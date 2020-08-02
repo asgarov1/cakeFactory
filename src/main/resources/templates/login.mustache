@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cake Factory Login</title>
+
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/shop-homepage.css" rel="stylesheet">
+</head>
+
+<body>
+{{>partials/navbar}}
+
+<div class="container jumbotron mt-4">
+    <div class="col-md-12">
+        <h1 class="mb-3 text-center">Please login</h1>
+        <hr/>
+        <form id="loginForm" action="/login" method="post">
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="username" placeholder="you@example.com">
+            </div>
+
+            <div class="mb-3">
+                <label for="email">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="********">
+            </div>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>
+
+{{>partials/footer}}
+</body>
+</html>

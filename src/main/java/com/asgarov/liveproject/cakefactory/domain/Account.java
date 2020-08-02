@@ -1,12 +1,10 @@
 package com.asgarov.liveproject.cakefactory.domain;
 
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "accounts")
@@ -28,6 +26,11 @@ public class Account {
 
     @Column
     private String lastName;
+
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name="user_role", joinColumns = @JoinColumn(name="email"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

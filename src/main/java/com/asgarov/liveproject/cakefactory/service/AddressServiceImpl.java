@@ -6,6 +6,8 @@ import com.asgarov.liveproject.cakefactory.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 
 @Service
@@ -31,7 +33,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address findByEmail(String email) {
+    public List<Address> findByEmail(String email) {
         return addressRepository.findByEmail(email);
     }
 

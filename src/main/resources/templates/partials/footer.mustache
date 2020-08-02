@@ -26,9 +26,14 @@
 
             let orderData = JSON.stringify($("#orderForm").serializeObject());
 
+            var token =  $('input[name="_csrf"]').attr('value');
+
             $.ajax({
                 type: "POST",
                 url: postUrl,
+                headers: {
+                    'X-CSRF-Token': token
+                },
                 data: orderData,
                 dataType: "text",
                 contentType: "application/json",

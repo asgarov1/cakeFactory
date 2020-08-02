@@ -1,10 +1,14 @@
 package com.asgarov.liveproject.cakefactory.service;
 
 import com.asgarov.liveproject.cakefactory.domain.Account;
+import com.asgarov.liveproject.cakefactory.domain.Role;
 import com.asgarov.liveproject.cakefactory.domain.dto.SignupDTO;
 import com.asgarov.liveproject.cakefactory.repository.AccountRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 
 import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 
@@ -12,27 +16,30 @@ import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AccountServiceImpl(AccountRepository userRepository) {
-        this.accountRepository = userRepository;
+    public AccountServiceImpl(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
+        this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     @Transactional(propagation = SUPPORTS)
     public boolean saveAccount(SignupDTO signupDTO) {
-        accountRepository.save(extractAccount(signupDTO));
-        return true;
+        return saveAccount(extractAccount(signupDTO));
     }
 
     @Override
     public boolean saveAccount(Account account) {
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        account.getRoles().add(Role.USER);
         accountRepository.save(account);
         return true;
     }
 
     @Override
     public Account findByEmail(String email) {
-        return accountRepository.findByEmail(email);
+        return accountRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
     }
 
     private Account extractAccount(SignupDTO signupDTO) {

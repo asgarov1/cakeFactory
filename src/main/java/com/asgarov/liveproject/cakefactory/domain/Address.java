@@ -2,10 +2,7 @@ package com.asgarov.liveproject.cakefactory.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "addresses")
@@ -17,6 +14,10 @@ import javax.persistence.Table;
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
     private String email;
 
     @Column
