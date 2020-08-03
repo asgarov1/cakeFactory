@@ -13,6 +13,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Account {
 
     @Id
@@ -31,6 +32,13 @@ public class Account {
     @CollectionTable(name="user_role", joinColumns = @JoinColumn(name="email"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
+
+    public void addRole(Role role){
+        if(roles == null){
+            roles = new HashSet<>();
+        }
+        roles.add(role);
+    }
 
     @Override
     public boolean equals(Object o) {

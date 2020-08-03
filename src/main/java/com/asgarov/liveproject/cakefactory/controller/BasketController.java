@@ -1,8 +1,10 @@
 package com.asgarov.liveproject.cakefactory.controller;
 
+import com.asgarov.liveproject.cakefactory.domain.User;
 import com.asgarov.liveproject.cakefactory.domain.dto.OrderDTO;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
 import com.asgarov.liveproject.cakefactory.service.CatalogService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +30,12 @@ public class BasketController {
     }
 
     @GetMapping
-    public String viewBasket(Model model) {
+    public String viewBasket(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("basketEntries", basketService.getBasketItems());
         model.addAttribute("total", String.format("%.2f", basketService.getTotal()));
         model.addAttribute("numberOfItemsInBasket", basketService.countItems());
         model.addAttribute("orderDTO", new OrderDTO());
+        model.addAttribute("user", user);
         return "basket";
     }
 

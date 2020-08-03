@@ -15,14 +15,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/basket">Basket</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/signup">Signup</a>
-                </li>
-                <li class="nav-item">
-                    <form method="POST" action="/logout">
-                        <input type="submit" value="Logout" class="link nav-item"/>
-                    </form>
-                </li>
+                {{^loggedIn}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">Signup</a>
+                    </li>
+                {{/loggedIn}}
+                {{#loggedIn}}
+                    <li class="nav-item">
+                        <form method="POST" action="/logout">
+                            <input type="submit" value="Logout" class="link nav-item"/>
+                            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+                        </form>
+                    </li>
+                {{/loggedIn}}
             </ul>
         </div>
     </div>

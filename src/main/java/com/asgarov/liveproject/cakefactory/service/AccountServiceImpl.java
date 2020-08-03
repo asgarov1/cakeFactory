@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 
@@ -32,7 +33,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean saveAccount(Account account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
-        account.getRoles().add(Role.USER);
+        account.addRole(Role.USER);
         accountRepository.save(account);
         return true;
     }

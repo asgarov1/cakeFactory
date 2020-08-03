@@ -8,6 +8,7 @@ import com.asgarov.liveproject.cakefactory.service.AddressService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,14 +25,20 @@ public class Bootstrap {
 
     @PostConstruct
     public void bootstrapDatabase() {
-        Set<Role> roles = new HashSet<>();
-        roles.add(Role.USER);
-        accountService.saveAccount(new Account("admin@admin.com", "pass", "Admin", "Admin", roles));
-        addressService.saveAddress(Address.builder()
-                .email("admin@admin.com")
-                .addressLine("Main str. 123")
-                .country("USA")
-                .city("Boston")
-                .zip("BOS123").build());
+        String email = "admin@admin.com";
+
+        try {
+            accountService.findByEmail(email);
+        } catch (EntityNotFoundException e) {
+            Set<Role> roles = new HashSet<>();
+            roles.add(Role.USER);
+            accountService.saveAccount(new Account(email, "pass", "Admin", "Admin", roles));
+            addressService.saveAddress(Address.builder()
+                    .email(email)
+                    .addressLine("Main str. 123")
+                    .country("USA")
+                    .city("Boston")
+                    .zip("BOS123").build());
+        }
     }
 }

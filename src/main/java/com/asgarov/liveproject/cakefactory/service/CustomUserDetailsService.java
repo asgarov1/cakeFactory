@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,8 +32,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User " + username + "not found");
         }
 
-        List<Address> addresses = addressRepository.findByEmail(username);
+        Optional<Address> optionalAddress = addressRepository.findByEmail(username);
 
-        return new User(optionalAccount.get(), addresses);
+        return new User(optionalAccount.get(), optionalAddress.orElse(null));
     }
 }
