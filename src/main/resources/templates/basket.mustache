@@ -66,8 +66,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" class="form-control" name="email" placeholder="you@example.com" {{#user}}{{#account}} value = {{email}} {{/account}}{{/user}}>
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" {{#user}}{{#account}} value = {{email}} {{/account}}{{/user}}>
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
                     </div>
@@ -75,7 +75,7 @@
 
                 <div class="mb-3">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" placeholder="1234 Main St" {{#user}}{{#address}} value = {{addressLine}} {{/address}}{{/user}}>
+                    <input type="text" class="form-control" name="address" {{#user}}{{#address}} value = {{addressLine}} {{/address}}{{/user}}>
                     <div class="invalid-feedback">
                         Please enter your shipping address.
                     </div>

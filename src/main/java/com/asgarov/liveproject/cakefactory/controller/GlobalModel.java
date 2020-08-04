@@ -13,6 +13,7 @@ public class GlobalModel {
     public void loggedIn(Model model, @AuthenticationPrincipal User user){
         if(user != null) {
             model.addAttribute("loggedIn", "true");
+            model.addAttribute("email", user.getUsername());
         }
     }
 }

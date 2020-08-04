@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor
 @ToString
 public class User implements UserDetails {
@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return account.getRoles().stream().map(role ->
-                new SimpleGrantedAuthority(role.toString())).collect(Collectors.toSet());
+                new SimpleGrantedAuthority("ROLE_" + role.toString())).collect(Collectors.toSet());
     }
 
     @Override

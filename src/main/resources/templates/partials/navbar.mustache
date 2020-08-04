@@ -25,8 +25,11 @@
                 {{/loggedIn}}
                 {{#loggedIn}}
                     <li class="nav-item">
-                        <form method="POST" action="/logout">
-                            <input type="submit" value="Logout" class="link nav-item"/>
+                        <a class="nav-link" href="/account">{{email}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logoutForm" method="POST" action="/logout">
+                            <a class="nav-link" href="javascript:$('#logoutForm').submit();">Logout</a>
                             <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
                         </form>
                     </li>

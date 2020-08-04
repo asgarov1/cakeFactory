@@ -88,6 +88,7 @@
                                     <h5>${{price}}</h5>
                                     <form action="/basket" method="post">
                                         <input type="text" hidden value={{itemCode}} name="itemCode"/>
+                                        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
                                         <button type="submit" class="btn btn-link add-btn">Add</button>
                                     </form>
                                 </div>
