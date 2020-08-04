@@ -15,15 +15,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/basket">Basket</a>
                 </li>
-                {{^loggedIn}}
+                {{^email}} <!--Means there is a logged in user-->
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/signup">Signup</a>
                     </li>
-                {{/loggedIn}}
-                {{#loggedIn}}
+                {{/email}}
+                {{#email}}
                     <li class="nav-item">
                         <a class="nav-link" href="/account">{{email}}</a>
                     </li>
@@ -33,7 +33,7 @@
                             <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
                         </form>
                     </li>
-                {{/loggedIn}}
+                {{/email}}
             </ul>
         </div>
     </div>
