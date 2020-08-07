@@ -9,8 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class AddressServiceImplTest {
@@ -47,8 +48,11 @@ class AddressServiceImplTest {
     @Test
     @DisplayName("saveAccount() should work")
     void findByEmail() {
-        Address address = new Address("john@mail.ru", "Main str 123", "Australia", "Melbourne", "TSUPM8");
+        Address address = Address.builder().email("john@mail.ru").addressLine("Main str 123").country("Australia").city("Melbourne").zip("TSUPM8").build();
         addressService.saveAddress(address);
-        assertEquals(address, addressService.findByEmail(address.getEmail()));
+
+        Optional<Address> addressOptional = addressService.findByEmail(address.getEmail());
+        assertTrue(addressOptional.isPresent());
+        assertEquals(address, addressOptional.get());
     }
 }

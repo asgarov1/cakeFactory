@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -22,7 +23,7 @@ class AccountServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        accountService = new AccountServiceImpl(accountRepository);
+        accountService = new AccountServiceImpl(accountRepository, NoOpPasswordEncoder.getInstance());
     }
 
     @Test
@@ -43,7 +44,7 @@ class AccountServiceImplTest {
     @Test
     @DisplayName("saveAccount() should work")
     void findByEmail() {
-        Account account = new Account("john@mail.ru", "pass", "John", "Smith");
+        Account account = Account.builder().email("john@mail.ru").password("pass").firstName("John").lastName("Smith").build();
         accountService.saveAccount(account);
         assertEquals(account, accountService.findByEmail(account.getEmail()));
     }

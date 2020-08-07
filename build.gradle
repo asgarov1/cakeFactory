@@ -37,7 +37,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.10.5'
     compile 'com.google.code.gson:gson:2.8.6'
-
+    compile 'org.springframework.security:spring-security-test:5.0.17.RELEASE'
 }
 
 test {
