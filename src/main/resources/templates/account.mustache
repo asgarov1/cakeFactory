@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="lastName">Last name</label>
-                    <input type="text" class="form-control" name="lastName"  {{#user}}{{#account}} value = {{lastName}} {{/account}}{{/user}} required>
+                    <input type="text" class="form-control" name="lastName"  {{#user}}{{#account}}{{#lastName}} value = {{lastName}} {{/lastName}}{{/account}}{{/user}} required>
                     <div class="invalid-feedback">
                         Valid last name is required.
                     </div>
@@ -41,12 +41,12 @@
 
             <div class="mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" value={{email}} disabled>
+                <input type="email" class="form-control" name="email" {{#email}}value={{email}}{{/email}} disabled>
             </div>
 
             <div class="mb-3">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" name="address" {{#user}}{{#address}} value = {{addressLine}} {{/address}}{{/user}}>
+                <input type="text" class="form-control" name="address" {{#user}}{{#address}}{{#addressLine}} value = {{.}} {{/addressLine}} {{/address}}{{/user}}>
                 <div class="invalid-feedback">
                     Please enter your shipping address.
                 </div>
@@ -55,21 +55,21 @@
             <div class="row">
                 <div class="col-md-5 mb-3">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control" name="country" {{#user}}{{#address}} value = {{country}} {{/address}}{{/user}}>
+                    <input type="text" class="form-control" name="country" {{#user}}{{#address}}{{#country}} value = {{country}} {{/country}}{{/address}}{{/user}}>
                     <div class="invalid-feedback">
                         Please select a valid country.
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="state">City</label>
-                    <input type="text" class="form-control" name="city" {{#user}}{{#address}} value = {{city}} {{/address}}{{/user}}>
+                    <input type="text" class="form-control" name="city" {{#user}}{{#address}}{{#city}} value = {{city}} {{/city}}{{/address}}{{/user}}>
                     <div class="invalid-feedback">
                         City required.
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="zip">Zip</label>
-                    <input type="text" class="form-control" name="zip" {{#user}}{{#address}} value = {{zip}} {{/address}}{{/user}}>
+                    <input type="text" class="form-control" name="zip" {{#user}}{{#address}}{{#zip}} value = {{zip}} {{/zip}}{{/address}}{{/user}}>
                     <div class="invalid-feedback">
                         Zip code required.
                     </div>

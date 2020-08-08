@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -16,11 +17,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private AuthenticationSuccessHandler oauth2SuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic();
         http.authorizeRequests()
-                    .mvcMatchers("/account/**").hasRole("USER")
+                    .mvcMatchers("/account/**").authenticated()
                     .mvcMatchers("/**").permitAll()
                 .and()
                     .formLogin()
@@ -38,7 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .headers()
                         .frameOptions()
-                            .sameOrigin();
+                            .sameOrigin()
+                .and()
+                    .oauth2Login()
+                        .loginPage("/login")
+                        .successHandler(oauth2SuccessHandler);
     }
 
     @Override
@@ -51,4 +59,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }
+
 }

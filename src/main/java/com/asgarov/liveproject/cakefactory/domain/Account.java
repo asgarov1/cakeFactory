@@ -15,17 +15,10 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 public class Account {
-
     @Id
     private String email;
-
-    @Column
     private String password;
-
-    @Column
     private String firstName;
-
-    @Column
     private String lastName;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)

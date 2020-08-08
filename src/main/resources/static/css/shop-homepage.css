@@ -6,3 +6,12 @@
 body {
     padding-top: 56px;
 }
+
+.facebook {
+    background-color: #385499;
+    color: white;
+}
+
+.google {
+    border: 1px solid lightgray;
+}

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @AllArgsConstructor
 @ToString
+@Builder
 public class User implements UserDetails {
 
     private Account account;

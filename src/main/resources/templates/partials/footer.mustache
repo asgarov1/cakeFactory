@@ -40,8 +40,12 @@
                 success: function (responseText) {
                     $("#successMessage").text(responseText);
                 },
+                onload: function () {
+                    $("#successMessage").text("Waiting for server response...");
+                },
                 error: function (request, status, error) {
-                    alert(request.responseText);
+                    console.log(request.responseText);
+                    $("#successMessage").text("Sorry, there was an error. Please try again or contact us.");
                 }
             });
         }

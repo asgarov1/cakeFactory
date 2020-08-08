@@ -38,6 +38,8 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.10.5'
     compile 'com.google.code.gson:gson:2.8.6'
     compile 'org.springframework.security:spring-security-test:5.0.17.RELEASE'
+
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 }
 
 test {

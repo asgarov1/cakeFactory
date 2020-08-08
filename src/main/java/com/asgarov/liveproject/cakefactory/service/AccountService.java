@@ -7,5 +7,6 @@ public interface AccountService {
 
     boolean saveAccount(SignupDTO signupDTO);
     boolean saveAccount(Account account);
+    boolean updateAccount(Account account);
     Account findByEmail(String email);
 }

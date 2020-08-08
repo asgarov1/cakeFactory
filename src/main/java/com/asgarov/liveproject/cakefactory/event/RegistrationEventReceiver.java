@@ -25,6 +25,10 @@ public class RegistrationEventReceiver {
         SignupDTO signupDTO = registrationEvent.getSignupDTO();
         signupService.signupUser(signupDTO);
         User user = (User) userDetailsService.loadUserByUsername(signupDTO.getEmail());
+        loginUser(user);
+    }
+
+    private void loginUser(User user) {
         Authentication auth =
                 new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
