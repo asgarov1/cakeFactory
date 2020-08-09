@@ -42,7 +42,14 @@ public class Oauth2SuccessHandler implements AuthenticationSuccessHandler {
         String email = oAuth2User.getAttribute("email");
         if (accountRepository.findByEmail(email).isEmpty()) {
             String name = oAuth2User.getAttribute("name");
-            Account account = Account.builder().email(email).firstName(name.split(" ")[0]).lastName(name.split(" ")[1]).roles(Set.of(Role.USER)).build();
+            String firstName = name;
+            String lastName = "";
+            if(name != null && name.contains(" ")){
+                firstName = name.split(" ")[0];
+                lastName = name.split(" ")[1];
+            }
+
+            Account account = Account.builder().email(email).firstName(firstName).lastName(lastName).roles(Set.of(Role.USER)).build();
             accountRepository.save(account);
         }
         User user = User.builder()
@@ -54,6 +61,6 @@ public class Oauth2SuccessHandler implements AuthenticationSuccessHandler {
                 new OAuth2AuthenticationToken(oToken.getPrincipal(), user.getAuthorities(), oToken.getAuthorizedClientRegistrationId());
         SecurityContextHolder.getContext().setAuthentication(auth);
 
-        this.redirectStrategy.sendRedirect(request, response, "/");
+        this.redirectStrategy.sendRedirect(request, response, "/account");
     }
 }

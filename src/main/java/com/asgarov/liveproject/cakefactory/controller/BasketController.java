@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Objects;
-
 @Controller
 @RequestMapping("/basket")
 public class BasketController {
@@ -38,7 +36,11 @@ public class BasketController {
         model.addAttribute("total", String.format("%.2f", basketService.getTotal()));
         model.addAttribute("numberOfItemsInBasket", basketService.countItems());
         model.addAttribute("orderDTO", new OrderDTO());
-        model.addAttribute("user", userService.findUser(Objects.requireNonNull(model.getAttribute("email")).toString()));
+
+        Object email = model.getAttribute("email");
+        if (email != null) {
+            model.addAttribute("user", userService.findUser(email.toString()));
+        }
         return "basket";
     }
 
