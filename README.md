@@ -9,4 +9,4 @@ If docker doesn't run check that port 5432 is available
 <code>./gradlew bootRun --args='--spring.datasource.password=password'</code>
 
 Keep in mind that alternative login options (login with google, github, facebook) won't work because the oath ids/secrets 
-are passed as commandline and you won't have them (nor will I disclose these:)
+are passed as commandline arguments and you won't have them (nor will I disclose these:)
