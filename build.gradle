@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
     id "org.flywaydb.flyway" version "6.5.2"
+    id 'com.google.cloud.tools.jib' version '2.5.0'
 }
 
 group = 'com.asgarov.liveproject'
@@ -40,6 +41,8 @@ dependencies {
     compile 'org.springframework.security:spring-security-test:5.0.17.RELEASE'
 
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    implementation 'com.paypal.sdk:checkout-sdk:1.0.2'
 }
 
 test {

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Data
 @Builder
-public class Item {
+public class OrderItem {
 
     @Id
     private String itemCode;

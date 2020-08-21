@@ -1,20 +1,20 @@
 package com.asgarov.liveproject.cakefactory.service;
 
-import com.asgarov.liveproject.cakefactory.domain.Item;
+import com.asgarov.liveproject.cakefactory.domain.OrderItem;
 
 import java.util.Map;
 import java.util.Set;
 
 public interface BasketService {
-    void addItemToBasket(Item item);
+    void addItemToBasket(OrderItem orderItem);
 
-    void removeItemFromBasket(Item item);
+    void removeItemFromBasket(OrderItem orderItem);
 
     void clearBasket();
 
     Integer countItems();
 
-    Set<Map.Entry<Item, Integer>> getBasketItems();
+    Set<Map.Entry<OrderItem, Integer>> getBasketItems();
 
     Double getTotal();
 }

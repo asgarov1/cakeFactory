@@ -1,7 +1,7 @@
 package com.asgarov.liveproject.cakefactory.controller;
 
 import com.asgarov.liveproject.cakefactory.CakefactoryApplication;
-import com.asgarov.liveproject.cakefactory.domain.Item;
+import com.asgarov.liveproject.cakefactory.domain.OrderItem;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
 import com.asgarov.liveproject.cakefactory.service.CatalogService;
 import org.junit.jupiter.api.BeforeEach;
@@ -71,8 +71,8 @@ class BasketControllerTest {
     @Test
     @DisplayName("Basket should display added products")
     public void viewBasketWorks() throws Exception {
-        Map<Item, Integer> basketItems = new HashMap<>();
-        basketItems.put(new Item("abc", "Apple Biscuit", 2.39), 2);
+        Map<OrderItem, Integer> basketItems = new HashMap<>();
+        basketItems.put(new OrderItem("abc", "Apple Biscuit", 2.39), 2);
 
         given(this.basketService.getBasketItems()).willReturn(basketItems.entrySet());
         given(this.basketService.getTotal()).willReturn(basketItems.keySet().stream().mapToDouble(k -> k.getPrice() * basketItems.get(k)).sum());

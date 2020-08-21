@@ -14,17 +14,17 @@ import java.util.Map;
 @Getter
 @NoArgsConstructor
 public class Basket {
-    private final Map<Item, Integer> itemsInBasket = new HashMap<>();
+    private final Map<OrderItem, Integer> itemsInBasket = new HashMap<>();
 
-    public void addItem(Item item) {
-        itemsInBasket.computeIfPresent(item, (key, value) -> ++value);
-        itemsInBasket.putIfAbsent(item, 1);
+    public void addItem(OrderItem orderItem) {
+        itemsInBasket.computeIfPresent(orderItem, (key, value) -> ++value);
+        itemsInBasket.putIfAbsent(orderItem, 1);
     }
 
-    public void removeItem(Item item) {
-        itemsInBasket.computeIfPresent(item, (key, value) -> --value);
-        if (itemsInBasket.get(item) == 0) {
-            itemsInBasket.remove(item);
+    public void removeItem(OrderItem orderItem) {
+        itemsInBasket.computeIfPresent(orderItem, (key, value) -> --value);
+        if (itemsInBasket.get(orderItem) == 0) {
+            itemsInBasket.remove(orderItem);
         }
     }
 

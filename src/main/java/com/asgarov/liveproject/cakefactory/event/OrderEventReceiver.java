@@ -10,7 +10,7 @@ public class OrderEventReceiver {
 
     @EventListener
     public void onNewOrder(OrderEvent event) {
-        log.info("==> Order Received: " + event.getOrderDTO());
+        log.info("==> Order Received: " + event.getAddress());
         log.info("==> Ordered Items: ");
         event.getBasketItems().forEach(entry -> log.info("\t- " + entry.getKey() + ", " + entry.getValue() + " times"));
         log.info("====================");

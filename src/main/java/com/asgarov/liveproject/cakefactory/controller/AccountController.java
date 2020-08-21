@@ -2,7 +2,7 @@ package com.asgarov.liveproject.cakefactory.controller;
 
 import com.asgarov.liveproject.cakefactory.domain.User;
 import com.asgarov.liveproject.cakefactory.domain.dto.UpdateDTO;
-import com.asgarov.liveproject.cakefactory.service.UserService;
+import com.asgarov.liveproject.cakefactory.service.user.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

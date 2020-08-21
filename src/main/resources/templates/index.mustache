@@ -9,7 +9,7 @@
 
     <title>Cake Factory Homepage</title>
 
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="css/shop-homepage.css" rel="stylesheet">
 </head>
 
@@ -23,7 +23,7 @@
     {{#showBasket}}
         <div id="addedSuccessfullyMessage" class="alert alert-warning alert-dismissible fade show text-center hidden"
              role="alert">
-            <a href="/basket">Basket: {{numberOfItemsInBasket}} item(s).</a>
+            <a href="/basket">Basket: {{numberOfItemsInBasket}} orderItem(s).</a>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -36,9 +36,9 @@
 
             <h1 class="my-4">Cake Factory</h1>
             <div class="list-group">
-                <a href="#" class="list-group-item">Donuts</a>
-                <a href="#" class="list-group-item">Eclairs</a>
-                <a href="#" class="list-group-item">Cakes</a>
+                <a href="#" class="list-group-orderItem">Donuts</a>
+                <a href="#" class="list-group-orderItem">Eclairs</a>
+                <a href="#" class="list-group-orderItem">Cakes</a>
             </div>
 
         </div>
@@ -53,13 +53,13 @@
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
+                    <div class="carousel-orderItem active">
                         <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-orderItem">
                         <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
                     </div>
-                    <div class="carousel-item">
+                    <div class="carousel-orderItem">
                         <img class="d-block img-fluid d-flex flex-column" src="http://placehold.it/900x350"
                              alt="Third slide">
                     </div>
@@ -76,10 +76,10 @@
 
             <div class="row">
 
-                {{#items}}
+                {{#orderItems}}
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt="item"></a>
+                            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt="orderItem"></a>
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a href="#">{{title}}</a>
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                     </div>
-                {{/items}}
+                {{/orderItems}}
 
             </div>
             <!-- /.row -->

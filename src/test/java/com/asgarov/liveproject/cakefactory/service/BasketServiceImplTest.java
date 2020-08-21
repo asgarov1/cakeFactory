@@ -1,7 +1,7 @@
 package com.asgarov.liveproject.cakefactory.service;
 
 import com.asgarov.liveproject.cakefactory.domain.Basket;
-import com.asgarov.liveproject.cakefactory.domain.Item;
+import com.asgarov.liveproject.cakefactory.domain.OrderItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ class BasketServiceImplTest {
     @Test
     @DisplayName("Several items to basket should all be correctly added")
     void addItemToBasket() {
-        Item croissant = new Item("cr", "Croissant", 2.99);
-        Item eclair = new Item("ec", "Eclair", 3.49);
+        OrderItem croissant = new OrderItem("cr", "Croissant", 2.99);
+        OrderItem eclair = new OrderItem("ec", "Eclair", 3.49);
         int numberOfCroissants = 2;
         int numberOfEclairs = 3;
 
@@ -42,7 +42,7 @@ class BasketServiceImplTest {
     @Test
     @DisplayName("Item count should diminish by one after first remove or disappear if count reaches zero")
     void removeItemFromBasket() {
-        Item croissant = new Item("cr", "Croissant", 2.99);
+        OrderItem croissant = new OrderItem("cr", "Croissant", 2.99);
         int numberOfCroissants = 2;
 
         basket.getItemsInBasket().put(croissant, numberOfCroissants);
@@ -57,7 +57,7 @@ class BasketServiceImplTest {
     @Test
     @DisplayName("Clearing basket works as expected")
     void clearBasket() {
-        Item croissant = new Item("cr", "Croissant", 2.99);
+        OrderItem croissant = new OrderItem("cr", "Croissant", 2.99);
         int numberOfCroissants = 2;
         basket.getItemsInBasket().put(croissant, numberOfCroissants);
         assertFalse(basket.getItemsInBasket().isEmpty());
@@ -69,7 +69,7 @@ class BasketServiceImplTest {
     @Test
     @DisplayName("Count items should work as expected")
     void countItems() {
-        Item croissant = new Item("cr", "Croissant", 2.99);
+        OrderItem croissant = new OrderItem("cr", "Croissant", 2.99);
         int numberOfCroissants = 2;
         for (int i = 0; i < numberOfCroissants; i++) {
             basketService.addItemToBasket(croissant);
@@ -81,7 +81,7 @@ class BasketServiceImplTest {
     @Test
     @DisplayName("getTotal() should work as expected")
     void getTotal() {
-        Item croissant = new Item("cr", "Croissant", 2.99);
+        OrderItem croissant = new OrderItem("cr", "Croissant", 2.99);
         int numberOfCroissants = 2;
         for (int i = 0; i < numberOfCroissants; i++) {
             basketService.addItemToBasket(croissant);

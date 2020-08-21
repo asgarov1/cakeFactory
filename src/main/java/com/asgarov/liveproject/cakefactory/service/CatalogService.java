@@ -1,13 +1,13 @@
 package com.asgarov.liveproject.cakefactory.service;
 
-import com.asgarov.liveproject.cakefactory.domain.Item;
+import com.asgarov.liveproject.cakefactory.domain.OrderItem;
 
 import java.util.List;
 
 public interface CatalogService {
 
-    List<Item> findAll();
+    List<OrderItem> findAll();
 
-    Item findById(String id);
+    OrderItem findById(String id);
 
 }

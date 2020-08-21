@@ -3,7 +3,7 @@ package com.asgarov.liveproject.cakefactory.controller;
 import com.asgarov.liveproject.cakefactory.domain.dto.OrderDTO;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
 import com.asgarov.liveproject.cakefactory.service.CatalogService;
-import com.asgarov.liveproject.cakefactory.service.UserService;
+import com.asgarov.liveproject.cakefactory.service.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

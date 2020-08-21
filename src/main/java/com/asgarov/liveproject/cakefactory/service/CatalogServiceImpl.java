@@ -1,6 +1,6 @@
 package com.asgarov.liveproject.cakefactory.service;
 
-import com.asgarov.liveproject.cakefactory.domain.Item;
+import com.asgarov.liveproject.cakefactory.domain.OrderItem;
 import com.asgarov.liveproject.cakefactory.repository.CatalogRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +17,12 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public List<Item> findAll() {
+    public List<OrderItem> findAll() {
         return catalogRepository.findAll();
     }
 
     @Override
-    public Item findById(String id) {
+    public OrderItem findById(String id) {
         return catalogRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 

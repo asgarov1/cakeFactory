@@ -1,4 +1,4 @@
-package com.asgarov.liveproject.cakefactory.service;
+package com.asgarov.liveproject.cakefactory.service.user;
 
 import com.asgarov.liveproject.cakefactory.domain.User;
 import com.asgarov.liveproject.cakefactory.domain.dto.UpdateDTO;

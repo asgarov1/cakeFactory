@@ -2,8 +2,8 @@ package com.asgarov.liveproject.cakefactory.event;
 
 import com.asgarov.liveproject.cakefactory.domain.User;
 import com.asgarov.liveproject.cakefactory.domain.dto.SignupDTO;
-import com.asgarov.liveproject.cakefactory.service.CustomUserDetailsService;
-import com.asgarov.liveproject.cakefactory.service.SignupService;
+import com.asgarov.liveproject.cakefactory.service.user.CustomUserDetailsService;
+import com.asgarov.liveproject.cakefactory.service.user.SignupService;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

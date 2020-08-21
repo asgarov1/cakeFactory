@@ -5,6 +5,7 @@ import com.asgarov.liveproject.cakefactory.domain.Address;
 import com.asgarov.liveproject.cakefactory.domain.Role;
 import com.asgarov.liveproject.cakefactory.service.AccountService;
 import com.asgarov.liveproject.cakefactory.service.AddressService;
+import com.asgarov.liveproject.cakefactory.service.CatalogService;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityNotFoundException;
@@ -24,6 +25,10 @@ public class Bootstrap {
 
     @PostConstruct
     public void bootstrapDatabase() {
+        initialiseDefaultUsers();
+    }
+
+    private void initialiseDefaultUsers() {
         String email = "admin@admin.com";
 
         try {

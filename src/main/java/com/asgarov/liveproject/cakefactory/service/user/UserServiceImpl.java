@@ -1,10 +1,12 @@
-package com.asgarov.liveproject.cakefactory.service;
+package com.asgarov.liveproject.cakefactory.service.user;
 
 import com.asgarov.liveproject.cakefactory.domain.Account;
 import com.asgarov.liveproject.cakefactory.domain.Address;
 import com.asgarov.liveproject.cakefactory.domain.User;
 import com.asgarov.liveproject.cakefactory.domain.dto.SignupDTO;
 import com.asgarov.liveproject.cakefactory.domain.dto.UpdateDTO;
+import com.asgarov.liveproject.cakefactory.service.AccountService;
+import com.asgarov.liveproject.cakefactory.service.AddressService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

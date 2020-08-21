@@ -1,4 +1,4 @@
-create table user_role (
+create table IF NOT EXISTS user_role (
     email varchar(255) not null,
     roles varchar(255)
 );

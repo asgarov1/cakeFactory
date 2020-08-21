@@ -1,4 +1,4 @@
-package com.asgarov.liveproject.cakefactory.service;
+package com.asgarov.liveproject.cakefactory.service.user;
 
 import com.asgarov.liveproject.cakefactory.domain.Account;
 import com.asgarov.liveproject.cakefactory.domain.Address;

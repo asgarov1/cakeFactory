@@ -18,16 +18,16 @@
 <div class="container jumbotron mt-4">
     <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="d-flex justify-content-between align-orderItems-center mb-3">
                 <span class="text-muted">Your cart</span>
                 <span class="badge badge-secondary badge-pill">{{numberOfItemsInBasket}}</span>
             </h4>
             {{#basketEntries}}
             <ul class="list-group">
                 <form action="/basket/remove" method="post">
-                    <li class="list-group-item d-flex justify-content-between">
+                    <li class="list-group-orderItem d-flex justify-content-between">
                         <div> {{key.title}} </div>
-                        <div class="d-flex justify-content-end align-items-center">
+                        <div class="d-flex justify-content-end align-orderItems-center">
                             <div class="mr-3"> ${{key.price}}</div>
                             <span class="badge badge-pill badge-info mr-3">{{value}}</span>
                             <input hidden value={{key.itemCode}} name="itemCode"/>
@@ -37,7 +37,7 @@
                 </form>
 
             {{/basketEntries}}
-            <li class="list-group-item d-flex justify-content-between mt-3">
+            <li class="list-group-orderItem d-flex justify-content-between mt-3">
                 <div>Total:</div>
                 <div>${{total}}</div>
             </li>
@@ -46,7 +46,7 @@
 
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate id="orderForm">
+            <form class="needs-validation" novalidate id="orderForm" action="/order" method="post">
                 {{#_csrf}}<input type="hidden" name="_csrf" value="{{_csrf.token}}"/>{{/_csrf}}
                 <div class="row">
                     <div class="col-md-6 mb-3">
@@ -78,7 +78,7 @@
 
                 <div class="mb-3">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" {{#user}}{{#address}} {{#addressLine}}
+                    <input type="text" class="form-control" name="addressLine" {{#user}}{{#address}} {{#addressLine}}
                            value= {{addressLine}}{{/addressLine}} {{/address}}{{/user}}>
                     <div class="invalid-feedback">
                         Please enter your shipping address.
@@ -113,9 +113,10 @@
                 </div>
                 <hr class="mb-4">
 
-                <button class="btn btn-primary btn-lg btn-block" onclick="postAjax('/order')" data-toggle="modal"
-                        data-target="#successModal">Complete Order
-                </button>
+<!--                <button class="btn btn-primary btn-lg btn-block" onclick="postAjax('/order')" data-toggle="modal"-->
+<!--                        data-target="#successModal">Complete Order-->
+<!--                </button>-->
+                <button class="btn btn-primary btn-lg btn-block" type="submit" >Buy with Paypal</button>
             </form>
 
             <div class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

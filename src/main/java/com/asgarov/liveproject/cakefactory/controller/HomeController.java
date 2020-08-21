@@ -1,6 +1,6 @@
 package com.asgarov.liveproject.cakefactory.controller;
 
-import com.asgarov.liveproject.cakefactory.domain.Item;
+import com.asgarov.liveproject.cakefactory.domain.OrderItem;
 import com.asgarov.liveproject.cakefactory.service.BasketService;
 import com.asgarov.liveproject.cakefactory.service.CatalogService;
 import org.springframework.stereotype.Controller;
@@ -29,8 +29,8 @@ public class HomeController {
         return "index";
     }
 
-    @ModelAttribute("items")
-    public List<Item> products() {
+    @ModelAttribute("orderItems")
+    public List<OrderItem> products() {
         return catalogService.findAll();
     }
 
