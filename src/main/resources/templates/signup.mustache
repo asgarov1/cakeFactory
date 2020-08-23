@@ -20,7 +20,7 @@
     <div class="col-md-12">
         <h1 class="mb-3 text-center">Registration Page</h1>
         <hr/>
-        <form class="needs-validation" novalidate id="orderForm">
+        <form class="needs-validation" novalidate id="orderForm" method="post" action="/signup">
             {{#_csrf}}<input type="hidden" name="_csrf" value="{{_csrf.token}}"/>{{/_csrf}}
             <div class="row">
                 <div class="col-md-6 mb-3">
@@ -66,7 +66,7 @@
 
             <div class="mb-3">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" name="address" placeholder="1234 Main St" required>
+                <input type="text" class="form-control" name="addressLine" placeholder="1234 Main St" required>
                 <div class="invalid-feedback">
                     Please enter your shipping address.
                 </div>
@@ -99,7 +99,7 @@
                 </div>
             </div>
             <hr/>
-            <button class="btn btn-primary btn-lg btn-block" onclick="postAjax('/signup')" data-toggle="modal"
+            <button class="btn btn-primary btn-lg btn-block" type="submit" data-toggle="modal"
                     data-target="#successModal">Sign up
             </button>
         </form>

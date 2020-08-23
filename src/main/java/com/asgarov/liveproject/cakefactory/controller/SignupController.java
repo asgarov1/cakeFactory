@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+
 @Controller
 @RequestMapping("/signup")
 public class SignupController {
@@ -36,11 +38,22 @@ public class SignupController {
     @PostMapping
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public String signup(@RequestBody SignupDTO signupDTO) {
-        if(accountService.findByEmail(signupDTO.getEmail()) != null){
+    public String signup(@RequestParam String firstName,
+                         @RequestParam String lastName,
+                         @RequestParam String email,
+                         @RequestParam String password,
+                         @RequestParam String addressLine,
+                         @RequestParam String city,
+                         @RequestParam String country,
+                         @RequestParam String zip) {
+        try {
+            accountService.findByEmail(email);
             return USER_EXISTS_MESSAGE;
+        } catch (EntityNotFoundException e) {
+            eventPublisher.publishEvent(new RegistrationEvent(SignupDTO.builder().firstName(firstName)
+                    .lastName(lastName).email(email).password(password).address(addressLine).city(city)
+                    .country(country).zip(zip).build()));
+            return SIGNUP_SUCCESS_MESSAGE;
         }
-        eventPublisher.publishEvent(new RegistrationEvent(signupDTO));
-        return SIGNUP_SUCCESS_MESSAGE;
     }
 }

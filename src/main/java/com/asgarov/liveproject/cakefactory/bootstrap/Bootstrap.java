@@ -5,14 +5,14 @@ import com.asgarov.liveproject.cakefactory.domain.Address;
 import com.asgarov.liveproject.cakefactory.domain.Role;
 import com.asgarov.liveproject.cakefactory.service.AccountService;
 import com.asgarov.liveproject.cakefactory.service.AddressService;
-import com.asgarov.liveproject.cakefactory.service.CatalogService;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
-//@Component
+@Component
 public class Bootstrap {
 
     private AccountService accountService;
