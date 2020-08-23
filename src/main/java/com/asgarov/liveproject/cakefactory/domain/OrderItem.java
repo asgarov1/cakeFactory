@@ -2,10 +2,8 @@ package com.asgarov.liveproject.cakefactory.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.annotation.PostConstruct;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "catalog")
@@ -24,6 +22,9 @@ public class OrderItem {
     @Column
     private double price;
 
+    public String getImageName() {
+        return title.replace(' ', '_').toLowerCase() + ".jpg";
+    }
 }
 
 
